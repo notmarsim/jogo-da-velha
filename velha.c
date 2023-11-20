@@ -5,9 +5,9 @@
 
 char tabuleiro[3][3];
 int game_over;
-
+int i;
+int j;
 void printar_tabuleiro(){
-    int i,j;
     for (i=0;i<3;i++){
         for(j=0;j<3;j++){
             printf("%c  ",tabuleiro[i][j]);
@@ -23,7 +23,7 @@ int first_move(){ // feito
 
 int jogo() {
     int position;
-    if(first_move() != 2){ //maquina começa
+    if(first_move() == 0){ //maquina começa
         srand(time(NULL));
         position = (rand()%5)+1;
         
@@ -53,6 +53,19 @@ int jogo() {
         
     }else{
         printf("player\n");
+        int ask = 1;
+        int x,y;
+        do{
+        printf("choose a place to play\n");
+        scanf("%d %d",&x,&y);
+        if(x<0 || x>2 || y<0||y>2 ||tabuleiro[x][y]!= '.'){
+            printf("invalid play\n");
+        }
+        else{
+            tabuleiro[x][y]='o';
+            ask=0;
+        }
+        }while(ask==1);
     }
     
     return 0;
@@ -60,11 +73,12 @@ int jogo() {
 
 int main(){  
     game_over = 0;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             tabuleiro[i][j] = '.';
         }
     }
+    
     jogo();
     printar_tabuleiro();
     
