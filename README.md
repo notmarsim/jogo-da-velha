@@ -1,1 +1,1 @@
-# jogo-da-velha-vs-maquina
+# jogo-da-velha
